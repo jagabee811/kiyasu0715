@@ -1,0 +1,241 @@
+/*! destyle.css v4.0.1 | MIT License | https://github.com/nicolas-cusan/destyle.min.css */
+*,::before,::after{box-sizing:border-box;border-style:solid;border-width:0;min-width:0}html{line-height:1.15;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}body{margin:0}main{display:block}p,table,blockquote,address,pre,iframe,form,figure,dl{margin:0}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit;margin:0}ul,ol{margin:0;padding:0;list-style:none}dt{font-weight:700}dd{margin-left:0}hr{box-sizing:content-box;height:0;overflow:visible;border-top-width:1px;margin:0;clear:both;color:inherit}pre{font-family:monospace,monospace;font-size:inherit}address{font-style:inherit}a{background-color:transparent;text-decoration:none;color:inherit}abbr[title]{text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:inherit}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}svg,img,embed,object,iframe{vertical-align:bottom}button,input,optgroup,select,textarea{-webkit-appearance:none;appearance:none;vertical-align:middle;color:inherit;font:inherit;background:transparent;padding:0;margin:0;border-radius:0;text-align:inherit;text-transform:inherit}button,[type="button"],[type="reset"],[type="submit"]{cursor:pointer}button:disabled,[type="button"]:disabled,[type="reset"]:disabled,[type="submit"]:disabled{cursor:default}:-moz-focusring{outline:auto}select:disabled{opacity:inherit}option{padding:0}fieldset{margin:0;padding:0;min-width:0}legend{padding:0}progress{vertical-align:baseline}textarea{overflow:auto}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto}[type="search"]{outline-offset:-2px}[type="search"]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}[type="number"]{-moz-appearance:textfield}label[for]{cursor:pointer}details{display:block}summary{display:list-item}[contenteditable]:focus{outline:auto}table{border-color:inherit;border-collapse:collapse}caption{text-align:left}td,th{vertical-align:top;padding:0}th{text-align:left;font-weight:700}
+
+html,body{
+  height: 100%;
+}
+
+
+
+/*ローディング画面設定　ここから*/
+.contents {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+
+.loading-area {
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', '游ゴシック Medium', YuGothic, YuGothicM, 'Hiragino Kaku Gothic ProN', メイリオ, Meiryo, sans-serif;
+}
+
+.loading-area span {
+  display: inline-block;
+  background-color: #efefef;
+  background-image: linear-gradient(#693100 0 100%);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-size: 100% 0%;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  font-size: 4rem;
+  font-weight: bold;
+  animation: water-anime 2s infinite linear;
+  text-transform: uppercase;
+}
+
+.loading-area span:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.loading-area span:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.loading-area span:nth-child(3) {
+  animation-delay: 0.16s;
+}
+
+.loading-area span:nth-child(4) {
+  animation-delay: 0.20s;
+}
+
+.loading-area span:nth-child(5) {
+  animation-delay: 0.24s;
+}
+
+.loading-area span:nth-child(6) {
+  animation-delay: 0.28s;
+}
+
+.loading-area span:nth-child(7) {
+  animation-delay: 0.32s;
+}
+
+.loading-area span:nth-child(8) {
+  animation-delay: 0.36s;
+}
+
+.loading-area span:nth-child(9) {
+  animation-delay: 0.40s;
+}
+
+.loading-area span:nth-child(10) {
+  animation-delay: 0.44s;
+}
+
+@keyframes water-anime {
+
+  70%,
+  100% {
+      background-size: 100% 100%;
+  }
+}
+/*ここまで*/
+
+
+
+
+body{
+  position: relative;
+}
+
+/*ナビゲーション設定　ここから*/
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to bottom, rgba(46, 17, 0, 0.7)70%, rgba(95, 73, 59, 0.01)100%); /*グラデーションと透明度*/
+  padding: 1rem 150px;
+  color: white;
+  font-family: sans-serif;
+  height: 17vh;
+  z-index: 1;
+}
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.navbar .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar .nav-links a {
+  position: relative; /* アンダーラインを正しく配置するために必要 */
+  color: white;
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.navbar .nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px; /* アンダーラインと文字の間隔 */
+  width: 100%;
+  height: 2px;
+  background: #ffffff; /* 白いアンダーライン */
+  transform: scale(0, 1);
+  transform-origin: right top;
+  transition: transform 0.3s ease;
+}
+
+.navbar .nav-links a:hover::after {
+  transform: scale(1, 1);
+  transform-origin: left top;
+}
+/* ここまで */
+
+
+/*メインビジュアル設定　ここから*/
+.video{
+  height:100vh ;
+  width: 100%;
+  overflow: hidden;
+  object-fit: cover;
+  opacity: var(--video-opacitiy);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: -1;
+}
+.video::after{
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: .3;
+}
+.video video{
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+
+}
+/*ここまで*/
+
+
+/* コンセプトセクション */
+.concept-section {
+  display:block;
+  background-color: rgba(92, 77, 77, 0.95);
+  padding: 100px 20px;
+  text-align: center;
+  position:relative;
+  top: 900px;
+  z-index: -1;
+}
+
+.concept-inner h2 {
+  clear: both;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #693100;
+  font-family: '游ゴシック Medium', YuGothic, sans-serif;
+}
+
+.concept-inner p {
+  clear:both ;
+  font-size: 1.2rem;
+  color: #333;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* フッター */
+.footer {
+  background-color: #2e1100;
+  color: #fff;
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-top: 0;
+  font-family: sans-serif;
+  position:relative;
+  top: 900px;
+  z-index: -1;
+}
+
+.footer-inner p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+
+
+
+
