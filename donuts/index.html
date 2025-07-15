@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>unus doughnut</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="./images/logo.jpg" alt="ロゴ" />
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="#about">unus doughnutについて</a></li>
+                <li><a href="#menu">メニュー</a></li>
+                <li><a href="#gallery">店舗一覧</a></li>
+                <li><a href="#contact">お知らせ</a></li>
+                <li><a href="form.html">お問合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="slider-container">
+            <div class="mainimg">
+                <div class="text">
+                    <p id="mainimg-p">ここにしかないふわふわ<br>食感をあなたに</p>
+                </div>
+                <div class="slide"><img src="images/donut-3960487_1280.jpg" alt="Image 1"></div>
+                <div class="slide"><img src="images/donut-7020625_1920.jpg" alt="Image 2"></div>
+                <div class="slide"><img src="images/donuts-4196093_1280.jpg" alt="Image 3"></div>
+                <div class="slide"><img src="images/food-5984722_1280.jpg" alt="Image 4"></div>
+                <!-- 無限ループのために同じ画像を複製 -->
+                <div class="slide"><img src="images/donut-3960487_1280.jpg" alt="Image 1"></div>
+                <div class="slide"><img src="images/donut-7020625_1920.jpg" alt="Image 2"></div>
+                <div class="slide"><img src="images/donuts-4196093_1280.jpg" alt="Image 3"></div>
+                <div class="slide"><img src="images/food-5984722_1280.jpg" alt="Image 4"></div>
+                
+            </div>
+        </div>
+    
+    
+        <section id="about" class="section">
+            <h1 id="heading">unus doughnutについて</h1>
+            <p id="about-p">
+                私たちは新鮮でおいしい手作りドーナッツを毎日お届けしています。<br />
+                たっぷりクリームと、色鮮やかなトッピングで、皆様を笑顔にします。
+            </p>
+        </section>
+
+        <section id="menu" class="section">
+            <h1 id="heading">メニュー</h2>
+
+            <div id="productContainer"></div>
+
+            </div>
+        </section>
+
+        <section id="gallery" class="section">
+            <h1 id="heading">店舗一覧</h2>
+            <div class="gallery-grid">
+                <img src="images/" alt="店舗1" />
+                <img src="donut2.jpg" alt="店舗2" />
+                <img src="donut3.jpg" alt="店舗3" />
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2 >お問い合わせ</h2>
+            <p>住所: 千葉県千葉市中央区</p>
+            <p>電話: 03-1234-5678</p>
+            <p>メール: info@donuts-shop.jp</p>
+        </section>
+    </main>
+
+    <footer id="footer-style">
+        <p id="copy">&copy; 2024  unus doughnut - All Rights Reserved</p>
+    </footer>
+
+
+
+
+
+
+
+
+
+    <script>
+            // JavaScriptで商品情報を挿入します
+            let products = [
+        {
+            title: "カスタードドーナッツ",
+            description: "一口ごとに、濃厚な甘さが口いっぱいに広がり、なめらかで濃密なカスタードクリームの美味しさをお楽みいただけます。",
+            image: "images/b1custard.webp"
+        },
+        {
+            title: "イチゴドーナッツ",
+            description: "口の中でフレッシュないちごの豊かな風味が広がり、爽やかな果実の実感を楽しめます。生地といちごの調和が絶妙で、一口ごとに自然の甘さが心地よく感じられます。",
+            image: "images/b1strawberry.webp"
+        },
+        {
+            title: "抹茶ドーナッツ",
+            description: "濃厚な抹茶クリームがドーナツを彩ります。一口ごとに、抹茶の深みが広がり、独自のお茶の香りに包まれ、ふんわりとした生地と抹茶の絶妙なマリアージュは、日本の伝統的な味わいを感じながら、新しい美味しさを提供します。",
+            image: "images/b1matcha.webp"
+        },
+        {
+            title: "チョコドーナッツ",
+            description: "濃厚で甘美なチョコレートがドーナツに贅沢に組み込まれ、絶妙な味わいを魅せます。一口ごとに、チョコレートの濃密な風味が広がり、甘さとコクが楽しめます。ふんわりとした生地との絶妙なマッチングが、チョコレートの魅力を際立たせ、誰もが楽しめる特別な一品です。",
+            image: "images/b1chocolate.webp"
+        }
+        ];
+
+
+        let productContainer = document.getElementById("productContainer");
+
+        // 商品情報をループしてHTMLを生成
+        products.forEach(product => {
+        let productHTML = `
+            <div class="product">
+            <img src="${product.image}" alt="${product.title}">
+            <h3>${product.title}</h3>
+            <p>${product.description}</p>
+            </div>
+        `;
+
+        productContainer.innerHTML += productHTML;
+        });
+
+
+
+
+        const track = document.querySelector('.mainimg');
+
+        track.addEventListener('animationiteration', () => {
+         // アニメーションが繰り返されるたびに、スライダーをリセット
+        track.style.animation = 'none'; // 一旦アニメーションを停止
+        void track.offsetWidth; // 再計算を強制
+        track.style.animation = ''; // アニメーションを再設定
+});
+    </script>
+
+
+
+
+
+</body>
+</html>

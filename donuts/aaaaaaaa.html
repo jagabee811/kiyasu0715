@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>商品情報の表示</title>
+  <style>
+    #productContainer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .product {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px;
+      width: 200px;
+      text-align: center;
+    }
+    .product img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+    .product h3 {
+      margin: 10px 0;
+      font-size: 18px;
+    }
+    .product p {
+      margin: 5px 0;
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>商品一覧</h1>
+  <div id="productContainer"></div> <!-- 商品情報を挿入する要素 -->
+
+  <script>
+    // JavaScriptで商品情報を挿入します
+    let products = [
+  {
+    title: "みかん",
+    description: "新鮮で甘いみかんです。",
+    image: "https://via.placeholder.com/150?text=みかん"
+  },
+  {
+    title: "りんご",
+    description: "さくさくジューシーなりんご。",
+    image: "https://via.placeholder.com/150?text=りんご"
+  },
+  {
+    title: "バナナ",
+    description: "エネルギー満点のバナナ。",
+    image: "https://via.placeholder.com/150?text=バナナ"
+  }
+];
+
+
+let productContainer = document.getElementById("productContainer");
+
+// 商品情報をループしてHTMLを生成
+products.forEach(product => {
+  let productHTML = `
+    <div class="product">
+      <img src="${product.image}" alt="${product.title}">
+      <h3>${product.title}</h3>
+      <p>${product.description}</p>
+    </div>
+  `;
+
+  productContainer.innerHTML += productHTML;
+});
+
+  </script>
+</body>
+</html>
+
+
+
+// JavaScriptで商品情報を挿入します
+let products = [
+{
+title: "カスタードドーナッツ",
+description: "一口ごとに、濃厚な甘さが口いっぱいに広がり、なめらかで濃密なカスタードクリームの美味しさをお楽みいただけます。",
+image: "images/b1custard.webp"
+},
+{
+title: "イチゴドーナッツ",
+description: "口の中でフレッシュないちごの豊かな風味が広がり、爽やかな果実の実感を楽しめます。生地といちごの調和が絶妙で、一口ごとに自然の甘さが心地よく感じられます。",
+image: "images/b1strawberry.webp"
+},
+{
+title: "抹茶ドーナッツ",
+description: "濃厚な抹茶クリームがドーナツを彩ります。一口ごとに、抹茶の深みが広がり、独自のお茶の香りに包まれ、ふんわりとした生地と抹茶の絶妙なマリアージュは、日本の伝統的な味わいを感じながら、新しい美味しさを提供します。",
+image: "images/b1matcha.webp"
+},
+{
+title: "チョコドーナッツ",
+description: "濃厚で甘美なチョコレートがドーナツに贅沢に組み込まれ、絶妙な味わいを魅せます。一口ごとに、チョコレートの濃密な風味が広がり、甘さとコクが楽しめます。ふんわりとした生地との絶妙なマッチングが、チョコレートの魅力を際立たせ、誰もが楽しめる特別な一品です。",
+image: "images/b1chocolate.webp"
+}
+];
