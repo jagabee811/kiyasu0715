@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>その他の制作物</title>
+  <link rel="stylesheet" href="./css/result.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>その他の制作物</h1>
+      <p>創造性と技術の融合</p>
+    </div>
+
+    <div class="gallery-grid" id="gallery"></div>
+  </div>
+
+  <!-- モーダルウィンドウ -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <div class="modal-image" id="modalImage"></div>
+      <h2 id="modalTitle">作品タイトル</h2>
+      <p id="modalDescription">作品の詳細説明</p>
+      <div class="artwork-software" id="modalSoftware">使用ソフト</div>
+      <div class="artwork-details">
+        <span id="modalDate">制作日</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 作品追加ボタン -->
+  <button class="add-artwork-btn" onclick="openAddModal()" title="作品を追加">+</button>
+
+  <!-- 作品追加モーダル -->
+  <div id="addModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeAddModal()">&times;</span>
+      <h2>新しい作品を追加</h2>
+      <form id="addArtworkForm">
+        <div class="form-group">
+          <label for="artworkTitle">作品タイトル</label>
+          <input type="text" id="artworkTitle" name="title" required />
+        </div>
+        <div class="form-group">
+          <label for="artworkDescription">作品説明</label>
+          <textarea id="artworkDescription" name="description" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="artworkSoftware">使用ソフト</label>
+          <select id="artworkSoftware" name="software" required>
+            <option value="">選択してください</option>
+            <option value="Adobe Photoshop">Adobe Photoshop</option>
+            <option value="Adobe Illustrator">Adobe Illustrator</option>
+            <option value="Blender">Blender</option>
+            <option value="Procreate">Procreate</option>
+            <option value="Clip Studio Paint">Clip Studio Paint</option>
+            <option value="Maya">Maya</option>
+            <option value="3ds Max">3ds Max</option>
+            <option value="Cinema 4D">Cinema 4D</option>
+            <option value="その他">その他</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="artworkDate">制作日</label>
+          <input type="month" id="artworkDate" name="date" required />
+        </div>
+        <div class="form-buttons">
+          <button type="button" class="cancel-btn" onclick="closeAddModal()">キャンセル</button>
+          <button type="submit" class="submit-btn">作品を追加</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // 作品データ
+    let artworks = [
+      {
+        title: "抽象的な夢",
+        description: "色彩と形の調和を表現した抽象的なデジタル作品です。",
+        software: "Adobe Photoshop",
+        date: "2024年12月",
+        image: "./images/T-shirt.jpg"
+      },
+      {
+        title: "未来都市",
+        description: "サイバーパンクの世界観を表現した3Dアート作品。",
+        software: "Blender",
+        date: "2024年11月",
+        image: "🖼️ サンプル画像"
+      },
+      {
+        title: "自然の調和",
+        description: "水彩画のような柔らかなタッチで自然を描きました。",
+        software: "Procreate",
+        date: "2024年10月",
+        image: "🌺 サンプル画像"
+      }
+    ];
+
+    // ギャラリー再描画
+    function renderGallery() {
+      const gallery = document.getElementById('gallery');
+      gallery.innerHTML = '';
+      artworks.forEach((artwork, index) => {
+        const card = document.createElement('div');
+        card.className = 'artwork-card';
+        card.innerHTML = `
+          <div class="artwork-image">
+            ${artwork.image.endsWith(".jpg") || artwork.image.endsWith(".png") ? 
+              `<img src="${artwork.image}" alt="${artwork.title}" />` : 
+              `<span>${artwork.image}</span>`}
+          </div>
+          <div class="artwork-content">
+            <h3 class="artwork-title">${artwork.title}</h3>
+            <p class="artwork-description">${artwork.description}</p>
+            <div class="project-tags">
+              <span class="tag">HTML5</span>
+              <span class="tag">CSS3</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">XD</span>
+            </div>
+            <div class="artwork-details">
+              <span class="artwork-date">${artwork.date}</span>
+              <button class="view-button" onclick="openModal(${index})">詳細を見る</button>
+            </div>
+          </div>`;
+        gallery.appendChild(card);
+      });
+    }
+
+    // モーダルを開く
+    function openModal(index) {
+      const artwork = artworks[index];
+      document.getElementById('modalTitle').textContent = artwork.title;
+      document.getElementById('modalDescription').textContent = artwork.description;
+      document.getElementById('modalSoftware').textContent = artwork.software;
+      document.getElementById('modalDate').textContent = artwork.date;
+      document.getElementById('modalImage').innerHTML =
+        artwork.image.endsWith(".jpg") || artwork.image.endsWith(".png")
+          ? `<img src="${artwork.image}" alt="${artwork.title}" style="max-width:100%; border-radius:10px;">`
+          : `<span style="font-size:3rem;">${artwork.image}</span>`;
+      document.getElementById('modal').style.display = 'block';
+    }
+
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+
+    function openAddModal() {
+      document.getElementById('addModal').style.display = 'block';
+    }
+
+    function closeAddModal() {
+      document.getElementById('addModal').style.display = 'none';
+      document.getElementById('addArtworkForm').reset();
+    }
+
+    function addArtwork(title, description, software, date) {
+      const artwork = {
+        title,
+        description,
+        software,
+        date,
+        image: "🎨 新しい作品"
+      };
+      artworks.push(artwork);
+      renderGallery();
+    }
+
+    document.getElementById('addArtworkForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const title = document.getElementById('artworkTitle').value;
+      const description = document.getElementById('artworkDescription').value;
+      const software = document.getElementById('artworkSoftware').value;
+      const dateInput = document.getElementById('artworkDate').value;
+      const [year, month] = dateInput.split('-');
+      const date = `${year}年${month}月`;
+      addArtwork(title, description, software, date);
+      closeAddModal();
+    });
+
+    window.onclick = function (event) {
+      const modal = document.getElementById('modal');
+      const addModal = document.getElementById('addModal');
+      if (event.target === modal) closeModal();
+      if (event.target === addModal) closeAddModal();
+    };
+
+    // 初期表示
+    renderGallery();
+  </script>
+</body>
+</html>
